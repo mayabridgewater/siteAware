@@ -12,9 +12,9 @@ function checkEmail(email) {
     })
 };
 
-function newRegister({first_name, last_name, email, register}) {
+function newRegister({first_name, last_name, email, password, register}) {
     return new Promise((resolve, reject) => {
-        connection.query(`call add_user(?,?,?,?)`, [first_name, last_name, email, register], function(error, results, fields) {
+        connection.query(`call add_user(?,?,?,?,?)`, [first_name, last_name, email, password, register], function(error, results, fields) {
             if(error) {
                 reject(error)
             }else {
@@ -26,7 +26,7 @@ function newRegister({first_name, last_name, email, register}) {
 
 function newDetails(id, {address, city, phone}) {
     return new Promise((resolve, reject) => {
-        connection.query(`call add_details(?,?,?,?)`, [id, address, city, phone], function(error, results, fields) {
+        connection.query(`call add_user_details(?,?,?,?)`, [id, address, city, phone], function(error, results, fields) {
             if(error) {
                 reject(error)
             }else {
