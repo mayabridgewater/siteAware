@@ -32,13 +32,15 @@ router.post('/guest', async function(req, res, next) {
             user = user[0]
         }
         const checkDetails = await getDetails(user[0].id);
-        for (let i = 0; i < checkDetails.length; i++) {
-            if (checkDetails[i].address == req.body.address && 
-                checkDetails[i].city == req.body.city && 
-                checkDetails[i].phone == req.body.phone) {
-                   
-                    res.status(200).send(checkDetails[i]);
-                    return
+        if (checkDetails.length) {
+            for (let i = 0; i < checkDetails.length; i++) {
+                if (checkDetails[i].address == req.body.address && 
+                    checkDetails[i].city == req.body.city && 
+                    checkDetails[i].phone == req.body.phone) {
+                       
+                        res.status(200).send(checkDetails[i]);
+                        return
+                }
             }
         }
         const details = await newDetails(user[0].id, req.body);
