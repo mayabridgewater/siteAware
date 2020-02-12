@@ -4,7 +4,6 @@ var router = express.Router();
 const {getDepartments, getDepartmentById} = require('../db/department');
 
 router.get('/', async function(req, res, next) {
-  console.log('in route')
   try {
     const departments = await getDepartments();
     res.status(200).json(departments)

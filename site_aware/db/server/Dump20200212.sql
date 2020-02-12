@@ -111,15 +111,15 @@ CREATE TABLE `order_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `weight` decimal(10,4) NOT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `weight` decimal(10,4) DEFAULT NULL,
   `comment` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `order_id` (`order_id`),
   KEY `item_id` (`item_id`),
   CONSTRAINT `order_detail_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`),
   CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,7 +128,6 @@ CREATE TABLE `order_detail` (
 
 LOCK TABLES `order_detail` WRITE;
 /*!40000 ALTER TABLE `order_detail` DISABLE KEYS */;
-INSERT INTO `order_detail` VALUES (1,15,1,1,0.5000,'');
 /*!40000 ALTER TABLE `order_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -157,7 +156,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'maya','bridge','m@gmail.com',NULL,NULL);
+INSERT INTO `user` VALUES (1,'maya','bridge','m@gmail.com','8ONCHBXPFhtO1vIXdi6UsSgl/44m7rU7u8b8hQ5Uu89aU2qCMfzE4tbWUzUQd1j4oP/zcnQn9Ksm3pv10wYlmQ==','true');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +176,7 @@ CREATE TABLE `user_details` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `user_details_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,7 +185,7 @@ CREATE TABLE `user_details` (
 
 LOCK TABLES `user_details` WRITE;
 /*!40000 ALTER TABLE `user_details` DISABLE KEYS */;
-INSERT INTO `user_details` VALUES (1,1,'10 feinberg st','tel aviv',587851120);
+INSERT INTO `user_details` VALUES (1,1,'10 feinberg st','tel aviv',587851120),(2,1,'10 feinberg st','tel aviv',587851120),(3,1,'10 feinberg st','tel aviv',587851120),(4,1,'10 feinberg st','tel aviv',587851120),(5,1,'10 feinberg st','tel aviv',587851120),(6,1,'10 feinberg st','tel aviv',587851120),(7,1,'10 feinberg st','tel aviv',587851120),(8,1,'10 feinberg st','tel aviv',587851121),(9,1,'10 feinberg st','tel aviv',587851121);
 /*!40000 ALTER TABLE `user_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -286,6 +285,41 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `update_user` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_user`(
+	in id int(11),
+	in first_name varchar(20),
+    in last_name varchar(25),
+    in in_password varchar(200),
+    in register varchar(10)
+)
+BEGIN
+
+update `user` 
+set 
+	`first_name` = first_name,
+    `last_name` = last_name,
+    `password` = in_password,
+    `register` = register
+where
+	`id` = id;
+    
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -296,4 +330,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-11 16:57:05
+-- Dump completed on 2020-02-12 11:45:00
