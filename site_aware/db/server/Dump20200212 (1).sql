@@ -87,7 +87,7 @@ CREATE TABLE `order` (
   KEY `user_details_id` (`user_details_id`),
   CONSTRAINT `order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `order_ibfk_2` FOREIGN KEY (`user_details_id`) REFERENCES `user_details` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES (1,1,1,'2020-02-11 16:11:25',100.9000),(2,1,1,'2020-02-11 16:11:47',100.9000),(3,1,1,'2020-02-11 16:15:32',100.9000),(4,1,1,'2020-02-11 16:16:48',100.9000),(5,1,1,'2020-02-11 16:18:18',100.9000),(6,1,1,'2020-02-11 16:21:00',100.9000),(7,1,1,'2020-02-11 16:22:19',100.9000),(8,1,1,'2020-02-11 16:35:55',100.9000),(9,1,1,'2020-02-11 16:36:12',100.9000),(10,1,1,'2020-02-11 16:36:42',100.9000),(11,1,1,'2020-02-11 16:37:36',100.9000),(12,1,1,'2020-02-11 16:39:22',100.9000),(13,1,1,'2020-02-11 16:39:32',100.9000),(14,1,1,'2020-02-11 16:40:43',100.9000),(15,1,1,'2020-02-11 16:41:45',100.9000);
+INSERT INTO `order` VALUES (1,3,1,'2020-02-12 15:04:11',23.9000),(2,3,1,'2020-02-12 15:05:21',23.9000);
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,7 +119,7 @@ CREATE TABLE `order_detail` (
   KEY `item_id` (`item_id`),
   CONSTRAINT `order_detail_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`),
   CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,6 +128,7 @@ CREATE TABLE `order_detail` (
 
 LOCK TABLES `order_detail` WRITE;
 /*!40000 ALTER TABLE `order_detail` DISABLE KEYS */;
+INSERT INTO `order_detail` VALUES (1,1,1,2,0.5000,''),(2,2,1,2,0.5000,'');
 /*!40000 ALTER TABLE `order_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +148,7 @@ CREATE TABLE `user` (
   `register` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +157,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'maya','bridge','m@gmail.com','8ONCHBXPFhtO1vIXdi6UsSgl/44m7rU7u8b8hQ5Uu89aU2qCMfzE4tbWUzUQd1j4oP/zcnQn9Ksm3pv10wYlmQ==','true');
+INSERT INTO `user` VALUES (1,'maya','bridge','m@gmail.com','8ONCHBXPFhtO1vIXdi6UsSgl/44m7rU7u8b8hQ5Uu89aU2qCMfzE4tbWUzUQd1j4oP/zcnQn9Ksm3pv10wYlmQ==','true'),(2,'maya','bridge','m@m.com',NULL,NULL),(3,'maya','bridge','d@d.com',NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,11 +173,11 @@ CREATE TABLE `user_details` (
   `user_id` int(11) NOT NULL,
   `address` varchar(100) NOT NULL,
   `city` varchar(50) NOT NULL,
-  `phone` int(11) DEFAULT NULL,
+  `phone` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `user_details_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,7 +186,7 @@ CREATE TABLE `user_details` (
 
 LOCK TABLES `user_details` WRITE;
 /*!40000 ALTER TABLE `user_details` DISABLE KEYS */;
-INSERT INTO `user_details` VALUES (1,1,'10 feinberg st','tel aviv',587851120),(2,1,'10 feinberg st','tel aviv',587851120),(3,1,'10 feinberg st','tel aviv',587851120),(4,1,'10 feinberg st','tel aviv',587851120),(5,1,'10 feinberg st','tel aviv',587851120),(6,1,'10 feinberg st','tel aviv',587851120),(7,1,'10 feinberg st','tel aviv',587851120),(8,1,'10 feinberg st','tel aviv',587851121),(9,1,'10 feinberg st','tel aviv',587851121);
+INSERT INTO `user_details` VALUES (1,3,'1 main st','T','');
 /*!40000 ALTER TABLE `user_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,7 +269,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `add_user_details`(
 	in user_id int(11),
     in address varchar(100),
     in city varchar(50),
-    in phone int(11)
+    in phone varchar(11)
 )
 BEGIN
 
@@ -330,4 +331,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-12 11:45:00
+-- Dump completed on 2020-02-12 15:15:35
