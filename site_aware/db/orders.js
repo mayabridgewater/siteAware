@@ -1,8 +1,8 @@
 const {connection} = require('./config');
 
-function addOrder({user_id, details_id, total}) {
+function addOrder({user_id, usr_details_id, total}) {
     return new Promise((resolve, reject) => {
-        connection.query(`call add_order(?,?,?)`, [user_id, details_id, total], function(error, results, fields) {
+        connection.query(`call add_order(?,?,?)`, [user_id, usr_details_id, total], function(error, results, fields) {
             if(error) {
                 reject(error)
             }else {
