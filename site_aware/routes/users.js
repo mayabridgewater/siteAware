@@ -53,9 +53,10 @@ router.post('/guest', async function(req, res, next) {
 router.post('/login', async function(req, res, next) {
     try {
         const user = await getUser(req.body);
-        console.log(user)
+        res.cookie('login', JSON.stringify(user[0]), {maxAge: 1000 * 60 *60 *24});
+        res.status(200).send(user)
     }catch(error) {
-        console.log(error)
+        res.status(404).json({error: error.message})
     }
 })
 

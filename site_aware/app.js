@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cors = require('cors');
 const crypto = require('crypto');
 
+
 const departmentRouter = require('./routes/department');
 const itemRouter = require('./routes/item');
 const userRouter = require('./routes/users');
@@ -12,7 +13,7 @@ const orderRouter = require('./routes/orders');
 
 var app = express();
 
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:3001'}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
