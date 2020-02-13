@@ -33,7 +33,20 @@ function addDetails(order_id, items) {
     })
 };
 
+function getOrdersByUser(id) {
+    return new Promise((resolve, reject) => {
+        connection.query(`select * from order o join order_detail od on o.id = od.order_id where o.user_id = ?`, [id], function(error, results, fields) {
+            if(error) {
+                reject(error)
+            }else {
+                resolve(results)
+            }
+        })
+    })
+}
+
 module.exports = {
     addOrder,
-    addDetails
+    addDetails,
+    getOrdersByUser
 }

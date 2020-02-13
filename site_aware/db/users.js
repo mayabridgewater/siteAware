@@ -72,11 +72,24 @@ function getUser({email, password}) {
     })
 }
 
+function getUserInfo(id) {
+    return new Promise((resolve, reject) => {
+        connection.query(`select * from user u join user_details ud on u.id = ud.user_id where u.id = ?`, [id], function(error, results, fields) {
+            if(error) {
+                reject(error)
+            }else {
+                resolve(results)
+            }
+        })
+    })
+}
+
 module.exports = {
     checkEmail,
     newRegister,
     newDetails,
     getUser,
     GuestToRegister,
-    getDetails
+    getDetails,
+    getUserInfo
 }
