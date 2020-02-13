@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const {checkEmail, newRegister, newDetails, getUser, GuestToRegister, getDetails} = require('../db/users');
+const {checkEmail, newRegister, newDetails, getUser, GuestToRegister, getDetails, getUserInfo} = require('../db/users');
 
 router.post('/register', async function(req, res, next) {
     req.body.register = 'true';
@@ -55,6 +55,15 @@ router.post('/login', async function(req, res, next) {
         const user = await getUser(req.body);
         res.cookie('login', JSON.stringify(user[0]), {maxAge: 1000 * 60 *60 *24});
         res.status(200).send(user)
+    }catch(error) {
+        res.status(404).json({error: error.message})
+    }
+})
+
+router.get('/:id', async function(req, res, next) {
+    try {
+        const userInfo = await getUserInfo(req.params.id);
+        res.status(200).send(userInfo)
     }catch(error) {
         res.status(404).json({error: error.message})
     }
