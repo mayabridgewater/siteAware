@@ -21,7 +21,7 @@ function addDetails(order_id, items) {
         if (i < items.length-1) {
             query += ', '
         }
-    }
+    };
     return new Promise((resolve, reject) => {
         connection.query(`insert into order_detail (order_id, item_id, quantity, weight, comment) values ${query}`, params, function(error, results, fields) {
             if(error) {
@@ -35,7 +35,7 @@ function addDetails(order_id, items) {
 
 function getOrdersByUser(id) {
     return new Promise((resolve, reject) => {
-        connection.query(`select * from order o join order_detail od on o.id = od.order_id where o.user_id = ?`, [id], function(error, results, fields) {
+        connection.query('select o.*, i.label from `order` o join order_detail od on o.id = od.order_id join item i on od.item_id = i.id where o.user_id = ?', [id], function(error, results, fields) {
             if(error) {
                 reject(error)
             }else {

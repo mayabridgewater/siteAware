@@ -9,7 +9,8 @@ router.post('/register', async function(req, res, next) {
         let user = await checkEmail(req.body.email);
         if (user.length) {
             if(user[0].password) {
-                res.status(400).json({error: 'user already exists'})
+                res.send({error: 'user already exists'});
+                return
             } else {
                 await GuestToRegister(user[0].id, req.body); //add password to current guest user
             }
