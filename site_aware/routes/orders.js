@@ -16,7 +16,7 @@ router.post('/', async function(req, res, next) {
 router.get('/:id', async function(req, res, next) {
     try {
         const orders = await getOrdersByUser(req.params.id);
-        res.status(2002).send(orders)
+        res.status(200).send(orders)
     }catch(error) {
         res.status(404).json({error: error.message})
     }

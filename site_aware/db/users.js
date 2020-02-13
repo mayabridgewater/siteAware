@@ -38,7 +38,7 @@ function GuestToRegister(id, {first_name, last_name, password, register}) {
 
 function getDetails(id) {
     return new Promise((resolve, reject) => {
-        connection.query(`select * from user_details where user_id = ?`, [id], function(error, results, fields) {
+        connection.query(`select * from user_detail where user_id = ?`, [id], function(error, results, fields) {
             if(error) {
                 reject(error)
             }else {
@@ -50,7 +50,7 @@ function getDetails(id) {
 
 function newDetails(id, {address, city, phone}) {
     return new Promise((resolve, reject) => {
-        connection.query(`call add_user_details(?,?,?,?)`, [id, address, city, phone], function(error, results, fields) {
+        connection.query(`call add_user_detail(?,?,?,?)`, [id, address, city, phone], function(error, results, fields) {
             if(error) {
                 reject(error)
             }else {
@@ -74,7 +74,7 @@ function getUser({email, password}) {
 
 function getUserInfo(id) {
     return new Promise((resolve, reject) => {
-        connection.query(`select * from user u join user_details ud on u.id = ud.user_id where u.id = ?`, [id], function(error, results, fields) {
+        connection.query(`select *, ud.id as usr_detail_id from user u join user_detail ud on u.id = ud.user_id where u.id = ?`, [id], function(error, results, fields) {
             if(error) {
                 reject(error)
             }else {
