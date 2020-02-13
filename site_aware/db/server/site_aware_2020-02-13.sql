@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 8.0.18)
 # Database: site_aware
-# Generation Time: 2020-02-13 08:12:48 +0000
+# Generation Time: 2020-02-13 09:21:47 +0000
 # ************************************************************
 
 
@@ -57,7 +57,7 @@ CREATE TABLE `item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(25) NOT NULL,
   `department_id` int(11) NOT NULL,
-  `unit_price` decimal(10,4) NOT NULL,
+  `unit_price` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `department_id` (`department_id`),
   CONSTRAINT `item_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`)
@@ -68,36 +68,36 @@ LOCK TABLES `item` WRITE;
 
 INSERT INTO `item` (`id`, `label`, `department_id`, `unit_price`)
 VALUES
-	(1,'Papaya',1,23.9000),
-	(2,'Coconut',1,3.9000),
-	(3,'Pineapple',1,24.9000),
-	(4,'Kiwi',1,15.9000),
-	(5,'Mango',1,20.9000),
-	(6,'Pomegranate',2,6.9000),
-	(7,'Avocado',2,14.9000),
-	(8,'Winter Squash',2,9.9000),
-	(9,'Pumpkin',2,9.9000),
-	(10,'Stawberries',3,24.0000),
-	(11,'Blueberries',3,19.9000),
-	(12,'Raspberries',3,17.9000),
-	(13,'Cherry',3,9.5000),
-	(14,'Grape',3,16.9000),
-	(15,'Potato',4,6.9000),
-	(16,'Sweet Potato',4,9.9000),
-	(17,'Carrots',4,4.9000),
-	(18,'White Onion',4,4.9000),
-	(19,'Red Onion',4,5.9000),
-	(20,'White Cabbage',5,4.9000),
-	(21,'Red Cabbage',5,5.9000),
-	(22,'Cauliflower',5,7.9000),
-	(23,'Broccoli',5,9.9000),
-	(24,'Kale',5,7.9000),
-	(25,'Spinach',5,7.9000),
-	(26,'Lettuce',6,5.9000),
-	(27,'Red Pepper',6,13.9000),
-	(28,'Ginger',6,30.9000),
-	(29,'Lemon',6,11.9000),
-	(30,'Cucumber',6,9.9000);
+	(1,'Papaya',1,23.90),
+	(2,'Coconut',1,3.90),
+	(3,'Pineapple',1,24.90),
+	(4,'Kiwi',1,15.90),
+	(5,'Mango',1,20.90),
+	(6,'Pomegranate',2,6.90),
+	(7,'Avocado',2,14.90),
+	(8,'Winter Squash',2,9.90),
+	(9,'Pumpkin',2,9.90),
+	(10,'Stawberries',3,24.00),
+	(11,'Blueberries',3,19.90),
+	(12,'Raspberries',3,17.90),
+	(13,'Cherry',3,9.50),
+	(14,'Grape',3,16.90),
+	(15,'Potato',4,6.90),
+	(16,'Sweet Potato',4,9.90),
+	(17,'Carrots',4,4.90),
+	(18,'White Onion',4,4.90),
+	(19,'Red Onion',4,5.90),
+	(20,'White Cabbage',5,4.90),
+	(21,'Red Cabbage',5,5.90),
+	(22,'Cauliflower',5,7.90),
+	(23,'Broccoli',5,9.90),
+	(24,'Kale',5,7.90),
+	(25,'Spinach',5,7.90),
+	(26,'Lettuce',6,5.90),
+	(27,'Red Pepper',6,13.90),
+	(28,'Ginger',6,30.90),
+	(29,'Lemon',6,11.90),
+	(30,'Cucumber',6,9.90);
 
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -113,7 +113,7 @@ CREATE TABLE `order` (
   `user_id` int(11) NOT NULL,
   `user_details_id` int(11) NOT NULL,
   `date` datetime DEFAULT CURRENT_TIMESTAMP,
-  `total_price` decimal(10,4) NOT NULL,
+  `total_price` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `user_details_id` (`user_details_id`),
@@ -126,23 +126,23 @@ LOCK TABLES `order` WRITE;
 
 INSERT INTO `order` (`id`, `user_id`, `user_details_id`, `date`, `total_price`)
 VALUES
-	(1,3,1,'2020-02-12 15:04:11',23.9000),
-	(2,3,1,'2020-02-12 15:05:21',23.9000),
-	(3,1,1,'2020-02-13 09:23:22',282.4000),
-	(4,1,1,'2020-02-13 09:24:51',282.4000),
-	(5,1,1,'2020-02-13 09:25:20',282.4000),
-	(6,1,1,'2020-02-13 09:27:48',282.4000),
-	(7,1,1,'2020-02-13 09:28:51',282.4000),
-	(8,1,1,'2020-02-13 09:29:37',282.4000),
-	(9,1,1,'2020-02-13 09:30:06',282.4000),
-	(10,1,1,'2020-02-13 09:30:28',282.4000),
-	(11,1,1,'2020-02-13 09:30:55',282.4000),
-	(12,1,1,'2020-02-13 09:32:05',115.9000),
-	(13,1,1,'2020-02-13 09:32:55',115.9000),
-	(14,1,1,'2020-02-13 09:34:53',88.3000),
-	(15,1,1,'2020-02-13 09:49:45',27.6000),
-	(16,4,2,'2020-02-13 09:52:51',210.8000),
-	(17,8,7,'2020-02-13 10:05:36',39.2500);
+	(1,3,1,'2020-02-12 15:04:11',23.90),
+	(2,3,1,'2020-02-12 15:05:21',23.90),
+	(3,1,1,'2020-02-13 09:23:22',282.40),
+	(4,1,1,'2020-02-13 09:24:51',282.40),
+	(5,1,1,'2020-02-13 09:25:20',282.40),
+	(6,1,1,'2020-02-13 09:27:48',282.40),
+	(7,1,1,'2020-02-13 09:28:51',282.40),
+	(8,1,1,'2020-02-13 09:29:37',282.40),
+	(9,1,1,'2020-02-13 09:30:06',282.40),
+	(10,1,1,'2020-02-13 09:30:28',282.40),
+	(11,1,1,'2020-02-13 09:30:55',282.40),
+	(12,1,1,'2020-02-13 09:32:05',115.90),
+	(13,1,1,'2020-02-13 09:32:55',115.90),
+	(14,1,1,'2020-02-13 09:34:53',88.30),
+	(15,1,1,'2020-02-13 09:49:45',27.60),
+	(16,4,2,'2020-02-13 09:52:51',210.80),
+	(17,8,7,'2020-02-13 10:05:36',39.25);
 
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -158,7 +158,7 @@ CREATE TABLE `order_detail` (
   `order_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `quantity` int(11) DEFAULT NULL,
-  `weight` decimal(10,4) DEFAULT NULL,
+  `weight` decimal(10,2) DEFAULT NULL,
   `comment` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `order_id` (`order_id`),
@@ -172,16 +172,16 @@ LOCK TABLES `order_detail` WRITE;
 
 INSERT INTO `order_detail` (`id`, `order_id`, `item_id`, `quantity`, `weight`, `comment`)
 VALUES
-	(1,1,1,2,0.5000,''),
-	(2,2,1,2,0.5000,''),
-	(3,14,6,2,1.0000,''),
-	(4,14,7,10,0.5000,''),
-	(5,15,15,2,2.0000,''),
-	(6,16,1,2,2.0000,''),
-	(7,16,2,2,2.0000,''),
-	(8,16,3,2,2.0000,''),
-	(9,17,28,1,0.5000,''),
-	(10,17,29,4,0.5000,'');
+	(1,1,1,2,0.50,''),
+	(2,2,1,2,0.50,''),
+	(3,14,6,2,1.00,''),
+	(4,14,7,10,0.50,''),
+	(5,15,15,2,2.00,''),
+	(6,16,1,2,2.00,''),
+	(7,16,2,2,2.00,''),
+	(8,16,3,2,2.00,''),
+	(9,17,28,1,0.50,''),
+	(10,17,29,4,0.50,'');
 
 /*!40000 ALTER TABLE `order_detail` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -268,7 +268,7 @@ DELIMITER ;;
 /*!50003 CREATE*/ /*!50020 DEFINER=`root`@`localhost`*/ /*!50003 PROCEDURE `add_order`(
 	in user_id int(11),
     in user_details_id int(11),
-    in price decimal(10,4)
+    in price decimal(10,2)
 )
 BEGIN
 
