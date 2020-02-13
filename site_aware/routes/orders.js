@@ -9,7 +9,7 @@ router.post('/', async function(req, res, next) {
         const details = await addDetails(order[0][0].id, req.body.items);
         res.status(200).send(details)
     }catch(error) {
-        res.status(400).json({error: error.message})
+        res.status(404).json({error: error.message})
     }
 });
 
